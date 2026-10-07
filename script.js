@@ -1,6 +1,3 @@
-// Tenta buscar as descrições salvas no navegador. Se não houver nada, começa com um objeto vazio {}.
-let descricoesCartas = JSON.parse(localStorage.getItem('descricoesCartas')) || {};
-
 const SENHA_CORRETA = "MiloHazard";
 
 const LISTA_MESA_COMPLETA = [
