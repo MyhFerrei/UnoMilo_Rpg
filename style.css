@@ -284,14 +284,14 @@ body, html {
     min-height: 200px;
     max-height: 230px; 
     
-    /* Mesmo estilo de fundo, borda e cantos da caixa de edição */
     background-color: #f0e3c4;
-    border: 3px solid #8c5a2c; /* Cor da bordinha marrom igual ao modal */
+    border: 3px solid #8c5a2c;
     border-radius: 12px;
     padding: 15px;
     
-    /* Rolagem interna igualzinha */
+    /* GARANTE QUE A ROLAGEM SEJA APENAS VERTICAL (DE CIMA PARA BAIXO) */
     overflow-y: auto; 
+    overflow-x: hidden; 
     
     display: flex;
     flex-direction: column;
@@ -301,11 +301,15 @@ body, html {
     z-index: 5;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
-    #texto-descricao {
-    font-size: 1.1rem; /* Tamanho de fonte legível e proporcional à caixa */
+
+/* Garante que o texto dentro se ajuste e quebre as linhas para baixo */
+#texto-descricao {
+    font-size: 1.1rem;
     line-height: 1.4;
     color: #3d2314;
     margin: 0;
+    width: 100%;
+    word-break: break-word;
 }
 
 /* 4. Botão Voltar (To Be Continued) */
