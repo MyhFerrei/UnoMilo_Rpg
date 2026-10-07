@@ -282,12 +282,17 @@ body, html {
     left: 38%;
     width: 500px;
     min-height: 200px;
-    max-height: 400px; 
-    overflow-y: auto; 
+    max-height: 230px; 
+    
+    /* Mesmo estilo de fundo, borda e cantos da caixa de edição */
     background-color: #f0e3c4;
-    border-radius: 25px;
-    padding: 25px;
-    /* Altere de 'center' para 'flex-start' para alinhar o texto no topo da caixa */
+    border: 3px solid #8c5a2c; /* Cor da bordinha marrom igual ao modal */
+    border-radius: 12px;
+    padding: 15px;
+    
+    /* Rolagem interna igualzinha */
+    overflow-y: auto; 
+    
     display: flex;
     flex-direction: column;
     align-items: flex-start;
