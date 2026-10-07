@@ -25,7 +25,8 @@ const LISTA_BARALHO_EXIBICAO = [
     "MaisDoisRed.png", "MaisQuatroRed.png", "BloqueioRed.png", "VolteRed.png"
 ];
 
-let descricoesCartas = JSON.parse(localStorage.getItem('jojo_uno_descricoes')) || {};
+// Corrigido para usar a mesma chave 'descricoesCartas' no carregamento e no salvamento
+let descricoesCartas = JSON.parse(localStorage.getItem('descricoesCartas')) || {};
 
 function getTipoBaseCarta(nomeCarta) {
     return nomeCarta
@@ -205,14 +206,15 @@ closeModal.addEventListener('click', () => modal.style.display = 'none');
 btnSalvarDesc.addEventListener('click', () => {
     if (cartaTipoSendoEditada) {
         // Pega o texto digitado na textarea
-        let novoTexto = document.getElementById('input-descricao').value;
+        let novoTexto = document.getElementById('modal-input-desc').value;
         
         // Salva no objeto do jogo
         descricoesCartas[cartaTipoSendoEditada] = novoTexto;
         
-        // NOVO: Salva permanentemente no navegador transformando o objeto em texto (JSON)
+        // Salva permanentemente no navegador
         localStorage.setItem('descricoesCartas', JSON.stringify(descricoesCartas));
         
-        // ... restante do seu código para fechar o modal/atualizar a tela ...
+        // Fecha o modal após salvar
+        modal.style.display = 'none';
     }
 });
