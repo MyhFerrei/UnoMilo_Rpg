@@ -281,7 +281,15 @@ body, html {
     bottom: 9.5%;
     left: 38%;
     width: 500px;
-    height: 250px;
+    
+    /* REMOVA ou comente a linha da altura fixa: */
+    /* height: 250px; */
+    
+    /* ADICIONE altura mínima e máxima com rolagem automática se necessário: */
+    min-height: 200px;
+    max-height: 400px; 
+    overflow-y: auto; 
+
     background-color: #f0e3c4;
     border-radius: 25px;
     padding: 25px;
