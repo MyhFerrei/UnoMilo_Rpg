@@ -1,3 +1,6 @@
+// Tenta buscar as descrições salvas no navegador. Se não houver nada, começa com um objeto vazio {}.
+let descricoesCartas = JSON.parse(localStorage.getItem('descricoesCartas')) || {};
+
 const SENHA_CORRETA = "MiloHazard";
 
 const LISTA_MESA_COMPLETA = [
@@ -204,8 +207,15 @@ closeModal.addEventListener('click', () => modal.style.display = 'none');
 
 btnSalvarDesc.addEventListener('click', () => {
     if (cartaTipoSendoEditada) {
-        descricoesCartas[cartaTipoSendoEditada] = modalInput.value;
-        localStorage.setItem('jojo_uno_descricoes', JSON.stringify(descricoesCartas));
-        modal.style.display = 'none';
+        // Pega o texto digitado na textarea
+        let novoTexto = document.getElementById('input-descricao').value;
+        
+        // Salva no objeto do jogo
+        descricoesCartas[cartaTipoSendoEditada] = novoTexto;
+        
+        // NOVO: Salva permanentemente no navegador transformando o objeto em texto (JSON)
+        localStorage.setItem('descricoesCartas', JSON.stringify(descricoesCartas));
+        
+        // ... restante do seu código para fechar o modal/atualizar a tela ...
     }
 });
