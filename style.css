@@ -1,0 +1,442 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body, html {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.tela {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+
+.tela.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Backgrounds */
+#tela-login {
+    background-image: url('assets/background/inicial.jpg');
+}
+
+#tela-inicial {
+    background-image: url('assets/background/inicial.jpg');
+}
+
+#tela-mesa {
+    background-image: url('assets/background/mesa.jpg');
+}
+
+#tela-baralho {
+    background-image: url('assets/background/baralho.jpg');
+    overflow-y: auto;
+}
+
+/* ESTILIZAÇÃO DA TELA DE LOGIN */
+.login-box {
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 5px solid #8b5a2b;
+    border-radius: 20px;
+    padding: 35px 30px;
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.login-box h1 {
+    color: #c4a179;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 0 0 10px #8b5a2b;
+}
+
+.login-box h2 {
+    color: #fce8bd;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#form-login {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+#input-senha {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 10px;
+    border: 3px solid #8b5a2b;
+    background-color: #fff8e7;
+    color: #000000;
+    outline: none;
+    font-weight: bold;
+}
+
+#input-senha:focus {
+    border-color: #d4a359;
+    box-shadow: 0 0 8px #d4a359;
+}
+
+#btn-entrar {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(180deg, #8b5a2b 0%, #5c3a1b 100%);
+    border: 2px solid #fce8bd;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    text-shadow: 1px 1px 2px #000;
+}
+
+#btn-entrar:hover {
+    transform: scale(1.03);
+    background: linear-gradient(180deg, #a66e38 0%, #6d441f 100%);
+}
+
+#msg-erro-senha {
+    color: #ff4d4d;
+    font-size: 0.95rem;
+    font-weight: bold;
+    min-height: 20px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* TELA INICIAL */
+.menu-cartas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 320px;
+}
+
+.carta-menu {
+    width: 190px;
+    height: 285px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    filter: drop-shadow(0px 0px 3px #ffffff) drop-shadow(0px 0px 1px #ffffff);
+}
+
+.carta-sun {
+    transform: rotate(-12deg);
+    margin-right: -45px;
+    z-index: 1;
+}
+
+.carta-baralho {
+    transform: rotate(8deg);
+    z-index: 2;
+}
+
+.carta-sun:hover {
+    animation: mexidinha 0.3s infinite alternate ease-in-out;
+}
+
+@keyframes mexidinha {
+    0% { transform: rotate(-14deg) translateY(-5px); }
+    100% { transform: rotate(-10deg) translateY(5px); }
+}
+
+.carta-baralho:hover {
+    transform: rotate(8deg) translateY(-5px);
+}
+
+/* TELA MESA DE JOGO */
+.mesa-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* 1. Slots do Topo */
+.slots-area {
+    position: absolute;
+    top: 9%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 5;
+}
+
+.slot {
+    width: 200px;
+    height: 295px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Exibe o EspacoMesa com transparência leve enquanto o slot estiver livre */
+.slot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/clicaveis/EspacoMesa.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    opacity: 0.25;
+    z-index: 1;
+}
+
+.slot.com-carta::before {
+    display: none;
+}
+
+.slot-carta {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    opacity: 1 !important;
+    filter: drop-shadow(0px 0px 3px #ffffff) drop-shadow(0px 0px 1px #ffffff);
+    transition: transform 0.2s ease;
+}
+
+.slot-carta:hover {
+    transform: scale(1.05);
+}
+
+/* 2. Controles (Baralho Encaixado na Marcação do Background + Setas) */
+.controles-mesa {
+    position: absolute;
+    left: 13.8%;          /* Encaixa o baralho exatamente dentro do guia do fundo */
+    bottom: 9.5%;          /* Alinha a base do baralho no retângulo do fundo */
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: auto;
+    height: auto;
+    background: transparent !important;
+    border: none;
+    box-shadow: none;
+    z-index: 10;
+}
+
+.deck-mesa {
+    width: 210px;
+    height: 305px;
+    object-fit: fill;
+    cursor: pointer;
+    background: transparent;
+    filter: drop-shadow(0px 0px 3px rgba(255, 255, 255, 0.4));
+    transition: transform 0.2s ease;
+}
+
+.deck-mesa:hover {
+    transform: scale(1.03);
+}
+
+.btn-setas {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    cursor: pointer;
+    filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.9));
+    transition: transform 0.4s ease;
+}
+
+.btn-setas:hover {
+    transform: rotate(-180deg);
+}
+
+/* 3. Painel Central de Descrição */
+.painel-descricao {
+    position: absolute;
+    bottom: 9.5%;
+    left: 38%;
+    width: 500px;
+    height: 250px;
+    background-color: #f0e3c4;
+    border-radius: 25px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+#texto-descricao {
+    font-size: 2.0rem;
+    line-height: 1.5;
+    color: #3d2314;
+}
+
+/* 4. Botão Voltar (To Be Continued) */
+.btn-voltar {
+    position: absolute;
+    right: 6%;
+    bottom: 4%;
+    width: 300px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-voltar:hover {
+    transform: scale(1.06);
+}
+
+/* Transição de Carta Animada */
+.carta-animada {
+    display: none;
+    position: fixed;
+    width: 210px;
+    height: 305px;
+    background-image: url('assets/deck/Verso.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 99;
+    filter: drop-shadow(0px 0px 3px #ffffff);
+    transition: all 0.4s ease-in-out;
+}
+
+/* TELA BARALHO / COLEÇÃO */
+.baralho-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    width: 100%;
+}
+
+.baralho-container h2 {
+    color: #fff;
+    margin-bottom: 20px;
+
+    text-shadow: 
+        -2px -2px 0 #000,  
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000,
+         0px  0px 8px #000; /* uma leve sombra extra para destacar */
+}
+
+.colecao-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    max-width: 1000px;
+    margin-bottom: 120px;
+}
+
+.card-colecao {
+    width: 150px;
+    height: 245px;
+    object-fit: contain;
+    cursor: pointer;
+    filter: drop-shadow(0px 0px 2px #ffffff);
+    transition: transform 0.2s;
+}
+
+.card-colecao:hover {
+    transform: scale(1.1);
+}
+
+/* MODAL DE EDIÇÃO */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fce8bd;
+    border: 4px solid #8b5a2b;
+    border-radius: 15px;
+    padding: 25px 20px 20px 20px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    color: #3d2314;
+}
+
+.close-modal {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#modal-img-carta {
+    width: 205px;
+    height: 300px;
+    object-fit: contain;
+    filter: drop-shadow(0px 0px 2px #ffffff);
+}
+
+#modal-input-desc {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #8b5a2b;
+    background-color: #fff8e7;
+    resize: none;
+    font-size: 0.95rem;
+}
+
+#btn-salvar-desc {
+    background-color: #8b5a2b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+#btn-salvar-desc:hover {
+    background-color: #6d441f;
+}

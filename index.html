@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uno - RPG JoJo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- TELA 0: LOGIN / SENHA -->
+    <section id="tela-login" class="tela active">
+        <div class="login-box">
+            <h1>RPG JOJO</h1>
+            <h2>INFORME A SENHA</h2>
+            
+            <form id="form-login">
+                <input type="password" id="input-senha" placeholder="Digite a senha..." required autocomplete="off">
+                <button type="submit" id="btn-entrar">ENTRAR</button>
+            </form>
+            <p id="msg-erro-senha"></p>
+        </div>
+    </section>
+
+    <!-- TELA 1: INICIAL -->
+    <section id="tela-inicial" class="tela active">
+        <div class="menu-cartas">
+            <img src="assets/clicaveis/IrMesa.png" id="btn-ir-mesa" class="carta-menu carta-sun" alt="Mesa de Jogo" title="Ir para a Mesa de Jogo">
+            <img src="assets/clicaveis/IrBaralho.png" id="btn-ir-baralho" class="carta-menu carta-baralho" alt="Coleção de Cartas" title="Ir para o Baralho">
+        </div>
+    </section>
+
+    <!-- TELA 2: MESA DE JOGO -->
+    <section id="tela-mesa" class="tela">
+        <div class="mesa-container">
+            <!-- Slots das Cartas no Topo -->
+            <div class="slots-area">
+                <div class="slot" data-index="0"></div>
+                <div class="slot" data-index="1"></div>
+                <div class="slot" data-index="2"></div>
+                <div class="slot" data-index="3"></div>
+                <div class="slot" data-index="4"></div>
+            </div>
+
+            <!-- Controles da Mesa (Monte Encaixado no Guia do Background + Setas) -->
+            <div class="controles-mesa">
+                <img src="assets/clicaveis/DecknaMesa.png" id="deck-puxar" class="deck-mesa" alt="Deck" title="Puxar Carta">
+                <img src="assets/clicaveis/SetasRotativas.png" id="btn-reset-mesa" class="btn-setas" alt="Reset" title="Recarregar Mesa">
+            </div>
+
+            <!-- Painel Central de Descrição -->
+            <div class="painel-descricao">
+                <p id="texto-descricao">Puxe uma carta do deck e clique sobre ela na mesa para revelar e ver os detalhes.</p>
+            </div>
+
+            <!-- Botão Voltar (To Be Continued) -->
+            <img src="assets/clicaveis/Voltar.png" class="btn-voltar" alt="Voltar" title="Voltar ao Início">
+        </div>
+    </section>
+
+    <!-- TELA 3: COLEÇÃO / EDITAR DESCRIÇÕES -->
+    <section id="tela-baralho" class="tela">
+        <div class="baralho-container">
+            <h2>Edição de Efeitos</h2>
+            <div id="grid-colecao" class="colecao-grid"></div>
+            <img src="assets/clicaveis/Voltar.png" class="btn-voltar" alt="Voltar" title="Voltar ao Início">
+        </div>
+    </section>
+
+    <!-- JANELA MODAL DE EDIÇÃO -->
+    <div id="modal-edicao" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modal-img-carta" src="" alt="Carta">
+            <textarea id="modal-input-desc" placeholder="Escreva a descrição do efeito da carta aqui..."></textarea>
+            <button id="btn-salvar-desc">Salvar Descrição</button>
+        </div>
+    </div>
+
+    <!-- Carta Animada para Transição -->
+    <div id="carta-animada" class="carta-animada"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
