@@ -301,11 +301,11 @@ body, html {
     z-index: 5;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
-
-#texto-descricao {
-    font-size: 2.0rem;
-    line-height: 1.5;
+    #texto-descricao {
+    font-size: 1.1rem; /* Tamanho de fonte legível e proporcional à caixa */
+    line-height: 1.4;
     color: #3d2314;
+    margin: 0;
 }
 
 /* 4. Botão Voltar (To Be Continued) */
